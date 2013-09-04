@@ -192,9 +192,8 @@ function striposAny(%str,%possibles,%offset)
 }
 
 
-function rollDice(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
+function rollDice(%client,%str)
 {
-	%str = trim(%a SPC %b SPC %c SPC %d SPC %e SPC %f SPC %g SPC %h SPC %i SPC %j);
 	%result = parseDiceFormat(%str);
 	%msg = getField(%result,1);
 	%result = getField(%result,0);
@@ -208,6 +207,7 @@ function rollDice(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
 }
 function serverCmdDMRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j) //proll was a good name - privateroll - but only the DM is supposed to use it.
 {
+	if(!%client.isDM) return;
 	%str = trim(%a SPC %b SPC %c SPC %d SPC %e SPC %f SPC %g SPC %h SPC %i SPC %j);
 	%result = parseDiceFormat(%str);
 	%msg = getField(%result,1);
