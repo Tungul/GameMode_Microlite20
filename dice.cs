@@ -1,6 +1,9 @@
+// Script_Dice from M, BL_ID 4332, used and modified without permission.
+// http://forum.blockland.us/index.php?topic=189605.0
+
 $Dice::MaxCount = 30;
 $Dice::MinSides = 3;
-$Dice::MaxSides = 100;
+$Dice::MaxSides = 20; // You'll never go above a 20 in Microlite.
 $Dice::MaxShownCount = 7;
 $Dice::HardErrors = 1;
 
@@ -189,7 +192,7 @@ function striposAny(%str,%possibles,%offset)
 }
 
 
-function serverCmdRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
+function rollDice(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
 {
 	%str = trim(%a SPC %b SPC %c SPC %d SPC %e SPC %f SPC %g SPC %h SPC %i SPC %j);
 	%result = parseDiceFormat(%str);
@@ -203,7 +206,7 @@ function serverCmdRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
 		messageClient(%client,'',%msg);
 	}
 }
-function serverCmdPRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
+function serverCmdDMRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j) //proll was a good name - privateroll - but only the DM is supposed to use it.
 {
 	%str = trim(%a SPC %b SPC %c SPC %d SPC %e SPC %f SPC %g SPC %h SPC %i SPC %j);
 	%result = parseDiceFormat(%str);
@@ -217,103 +220,89 @@ function serverCmdPRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j)
 	}
 }
 
-function serverCmdFlip(%client)
-{
-	%a = getRandom(0,10);
-	if(%a / 2 $= mFloor(%a / 2))
-	{
-		%msg = "\c6flipped a coin - \c2Heads\c6!";
-	} else {
-		%msg = "\c6flipped a coin - \c0Tails\c6!";
-	}
-	messageAllExcept(%client,'',"\c3" @ %client.getPlayerName() SPC %msg);
-	messageClient(%client,'',"\c6You" SPC %msg);
-}
-
-
-if(isFile("Add-Ons/Event_Variables.zip") && $AddOn__Event_Variables == 1)
-{
-	forceRequiredAddOn("Event_Variables");
-	registerOutputEvent("fxDTSbrick","rollDice","string 64 120\tstring 8 30",1);
-	registerSpecialVar("fxDTSbrick","dtotal","%this.lastRollTotal");
-	registerSpecialVar("fxDTSbrick","drawtotal","%this.lastRollRawTotal");
-	registerSpecialVar("fxDTSbrick","dcount","%this.lastRollCount");
-	registerSpecialVar("fxDTSbrick","dsides","%this.lastRollSides");
-}
-function fxDTSbrick::rollDice(%this,%str,%subdata,%client)
-{
-	%str = filterVariableString(%str,%this,%client,%client.player);
-	%result = parseDiceFormat(%str);
-	%msg = getField(%result,1);
-	%result = getField(%result,0);
-	if(%result)
-	{
-		%this.lastRollTotal = $DiceTemp::Total;
-		%this.lastRollRawTotal = $DiceTemp::RawTotal;
-		%this.lastRollCount = $DiceTemp::Count;
-		%this.lastRollSides = $DiceTemp::Sides;
-		if($DiceTemp::Result != -1)
-		{
-			if(getWordCount(%subdata) != 2)
-			{
-				if($DiceTemp::Result == 1)
-					%this.onVariableTrue(%client);
-				else
-					%this.onVariableFalse(%client);
-				return;
-			}
-			%substart = getWord(%subdata,0);
-			%subend = getWord(%subdata,1);
-			if(!isInt(%substart) && isInt(%subend))
-			{
-				switch$(%substart)
-				{
-					case "<":
-						%substart = 0;
-						%subend = %subend - 1;
-					case "<=":
-						%substart = 0;
-					case ">":
-						%substart = %subend + 1;
-						%subend = %this.numEvents;
-					case ">=":
-						%substart = %subend;
-						%subend = %this.numEvents;
-					case "==":
-						%substart = %subend;
-					case "~=":
-						%sublike = %subend;
-					case "!=":
-						%subignore = %subend;
-					default:
-						%substart = 0;
-						%subend = %this.numEvents;
-				}
-			}
-			%substart = %substart < -1 ? 0 : %substart;
-			%subend = %subend > %this.numEvents ? %this.numEvents : %subend;
-			for(%i=0;%i<%this.numEvents;%i++)
-			{
-				if(((%i < %substart || %i > %subend) && %sublike $= "" && %subignore $= "") || (strPos(%i,%sublike) == -1 && %sublike !$= "") || (%subignore == %i && %subignore !$= ""))
-				{
-					if(%this.eventInput[%i] $= "onVariableTrue" || %this.eventInput[%i] $= "onVariableFalse")
-					{
-						%oldEnabled[%i] = %this.eventEnabled[%i];
-						%this.eventEnabled[%i] = 0;
-					}
-				}
-			}
-			if($DiceTemp::Result == 1)
-				%this.onVariableTrue(%client);
-			else
-				%this.onVariableFalse(%client);
-			for(%i=0;%i<%this.numEvents;%i++)
-			{
-				if(%oldEnabled[%i] !$= "")
-					%this.eventEnabled[%i] = %oldEnabled[%i];
-			}
-		}
-	} else {
-		%client.centerPrint(%msg,4);
-	}
-}
+// if(isFile("Add-Ons/Event_Variables.zip") && $AddOn__Event_Variables == 1) // unneccesary, but VCE might (read: probably won't) be implemented at a later date
+// {
+// 	forceRequiredAddOn("Event_Variables");
+// 	registerOutputEvent("fxDTSbrick","rollDice","string 64 120\tstring 8 30",1);
+// 	registerSpecialVar("fxDTSbrick","dtotal","%this.lastRollTotal");
+// 	registerSpecialVar("fxDTSbrick","drawtotal","%this.lastRollRawTotal");
+// 	registerSpecialVar("fxDTSbrick","dcount","%this.lastRollCount");
+// 	registerSpecialVar("fxDTSbrick","dsides","%this.lastRollSides");
+// }
+// function fxDTSbrick::rollDice(%this,%str,%subdata,%client)
+// {
+// 	%str = filterVariableString(%str,%this,%client,%client.player);
+// 	%result = parseDiceFormat(%str);
+// 	%msg = getField(%result,1);
+// 	%result = getField(%result,0);
+// 	if(%result)
+// 	{
+// 		%this.lastRollTotal = $DiceTemp::Total;
+// 		%this.lastRollRawTotal = $DiceTemp::RawTotal;
+// 		%this.lastRollCount = $DiceTemp::Count;
+// 		%this.lastRollSides = $DiceTemp::Sides;
+// 		if($DiceTemp::Result != -1)
+// 		{
+// 			if(getWordCount(%subdata) != 2)
+// 			{
+// 				if($DiceTemp::Result == 1)
+// 					%this.onVariableTrue(%client);
+// 				else
+// 					%this.onVariableFalse(%client);
+// 				return;
+// 			}
+// 			%substart = getWord(%subdata,0);
+// 			%subend = getWord(%subdata,1);
+// 			if(!isInt(%substart) && isInt(%subend))
+// 			{
+// 				switch$(%substart)
+// 				{
+// 					case "<":
+// 						%substart = 0;
+// 						%subend = %subend - 1;
+// 					case "<=":
+// 						%substart = 0;
+// 					case ">":
+// 						%substart = %subend + 1;
+// 						%subend = %this.numEvents;
+// 					case ">=":
+// 						%substart = %subend;
+// 						%subend = %this.numEvents;
+// 					case "==":
+// 						%substart = %subend;
+// 					case "~=":
+// 						%sublike = %subend;
+// 					case "!=":
+// 						%subignore = %subend;
+// 					default:
+// 						%substart = 0;
+// 						%subend = %this.numEvents;
+// 				}
+// 			}
+// 			%substart = %substart < -1 ? 0 : %substart;
+// 			%subend = %subend > %this.numEvents ? %this.numEvents : %subend;
+// 			for(%i=0;%i<%this.numEvents;%i++)
+// 			{
+// 				if(((%i < %substart || %i > %subend) && %sublike $= "" && %subignore $= "") || (strPos(%i,%sublike) == -1 && %sublike !$= "") || (%subignore == %i && %subignore !$= ""))
+// 				{
+// 					if(%this.eventInput[%i] $= "onVariableTrue" || %this.eventInput[%i] $= "onVariableFalse")
+// 					{
+// 						%oldEnabled[%i] = %this.eventEnabled[%i];
+// 						%this.eventEnabled[%i] = 0;
+// 					}
+// 				}
+// 			}
+// 			if($DiceTemp::Result == 1)
+// 				%this.onVariableTrue(%client);
+// 			else
+// 				%this.onVariableFalse(%client);
+// 			for(%i=0;%i<%this.numEvents;%i++)
+// 			{
+// 				if(%oldEnabled[%i] !$= "")
+// 					%this.eventEnabled[%i] = %oldEnabled[%i];
+// 			}
+// 		}
+// 	} else {
+// 		%client.centerPrint(%msg,4);
+// 	}
+// }

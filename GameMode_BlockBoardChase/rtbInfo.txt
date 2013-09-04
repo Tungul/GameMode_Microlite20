@@ -1,5 +1,0 @@
-id: 4780
-icon: lego
-type: Game Modes
-title: BlockBoardChase
-version: 2
