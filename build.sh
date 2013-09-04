@@ -6,6 +6,7 @@ rm GameMode_Microlite20.zip
 echo "create new zip"
 zip GameMode_Microlite20.zip *
 zip -d GameMode_Microlite20.zip build.sh README.md # exclude these files from finished add-on
+# TODO: put file onto remote ftp server for immediate testing
 echo "git add -A"
 git add -A
 echo "commit"
