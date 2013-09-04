@@ -7,7 +7,7 @@ echo "--- Build new zip"
 zip GameMode_Microlite20.zip *
 zip -d GameMode_Microlite20.zip build.sh README.md # exclude these files from finished add-on
 echo "--- Pushing to server"
-echo "cd Add-Ons ; put GameMode_Microlite20.zip" | ftp hammereditor.net && echo "--- FTP push success"
+echo "cd Add-Ons ; put GameMode_Microlite20.zip" | ftp hammereditor.net && echo "--- FTP push success
 echo "--- git add -A"
 git add -A
 echo "--- Commit"
