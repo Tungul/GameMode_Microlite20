@@ -1,16 +1,17 @@
 #!/bin/sh
-echo "> git pull"
+echo "--- Pull changes"
 git pull
-echo "remove old zip"
+echo "--- Remove old zip"
 rm GameMode_Microlite20.zip
-echo "create new zip"
+echo "--- Build new zip"
 zip GameMode_Microlite20.zip *
 zip -d GameMode_Microlite20.zip build.sh README.md # exclude these files from finished add-on
-# TODO: put file onto remote ftp server for immediate testing
+echo "--- Pushing to server"
+echo "cd Add-Ons ; put GameMode_Microlite20.zip" | ftp hammereditor.net
 echo "git add -A"
 git add -A
-echo "commit"
+echo "--- Commit"
 git commit
-echo "push"
+echo "Push to github"
 git push
-echo "done"
+echo "Complete"
