@@ -1,0 +1,73 @@
+<html>
+	<head><title>Demo</title></head>
+	<body>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script src='DiceRoller.js'></script>
+		<script>
+			var level = 1
+			,	str = (16 + 2)
+			,	dex = 13
+			,	mind = 12
+			,	hp = 6
+			,	ac = 4
+			,	pclass = "fighter"
+			,	race = "dwarf"
+			,	physical = level
+			,	subterfuge = level + 3
+			,	knowledge = level
+			,	communication = level
+			,	strmod, dexmod, mindmod, numdice, dicesize
+			,	attackmeleemod, attackmagicmod, attackmisslemod;
+		</script>
+		<script src='respredefined.js'></script>
+		<h1>USERNAME (CHARACTER NAME)</h1>
+		<table width="100%"><tr><td>
+		<table class="centerfont">
+			<tr>
+				<td>Dice Roller</td>
+				<td>Target: <input id='targetdiv' type='number'></td>
+			</tr>
+			<tr>
+				<td>Weapon Info</td>
+				<td><input id='numdicediv' type='number'>d<input id='dicesizediv' type='number'></td>
+				<td>2 handed: <input id='twohanddiv' type='checkbox'></td>
+				<td>Dual Wield: <input id='twolightdiv' type='checkbox'></td>
+			</tr>
+			<tr>
+				<td>Attack Rolls</td>
+				<td><div id='attackRolldiv'></div></td>
+			</tr>
+			<tr>
+				<td><center><button onclick="doRoll('attack', 'meleeAttack')">melee</button></center></td>
+				<td><center><button onclick="doRoll('attack', 'missleAttack')">missle</button></center></td>
+			</tr>
+			<tr>
+				<td colspan="2"><center><button onclick="doRoll('attack', 'magicAttack')">magic</button></center></td>
+			</tr>
+			<tr>
+				<td>Checks</td>
+				<td><div id='checkRolldiv'></div></td>
+			</tr>
+			<tr>
+				<td><button onclick="doRoll('check', 'phystr', 'checkRoll')">Physical STR</button></td>
+				<td><button onclick="doRoll('check', 'phydex', 'checkRoll')">Physical DEX</button></td>
+			</tr>
+			<tr>
+				<td><button onclick="doRoll('check', 'subdex', 'checkRoll')">Subterfuge DEX</button></td>
+				<td><button onclick="doRoll('check', 'submind', 'checkRoll')">Subterfuge MIND</button></td>
+			</tr>
+			<tr>
+				<td><button onclick="doRoll('check', 'knowmind', 'checkRoll')">Knowledge MIND</button></td>
+				<td><button onclick="doRoll('check', 'commind', 'checkRoll')">Communication MIND</button></td>
+			</tr>
+		</table></td><td class="rightside">
+		<table border="1">
+			<tr><th colspan="3">Weapons</th></tr>
+			<tr><th>Weapons</th>		<th>Damage</th>	<th>Range</th></tr>
+			<tr><td>Longsword</td>		<td>1d8</td>	<td>Melee</td></tr>
+			<tr><td>Dagger</td>			<td>1d4</td>	<td>10'</td></tr>
+			<tr><td>Sap</td>			<td>1d6</td>	<td>Melee</td></tr>
+		</table></td></tr></table>
+		<script>calc();</script>
+	</body>
+</html>
