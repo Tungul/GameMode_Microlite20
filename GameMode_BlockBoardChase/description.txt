@@ -1,0 +1,7 @@
+*+- BLOCK BOARD CHASE -+* Version 3.75
+	
+Play the Kirby 64 Checkerboard minigame/Minecraft Spleef game Blockland style!
+Originally made by ZSNO
+Made by Saxophone
+
+Best for 8-32 players

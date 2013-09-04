@@ -1,0 +1,97 @@
+//add-ons to load
+ADDON Support_Player_Persistence
+ADDON Projectile_Pong
+ADDON Weapon_Spear
+ADDON Light_Basic
+ADDON Particle_Basic
+ADDON Particle_Player
+ADDON Player_No_Jet
+ADDON Brick_Large_Cubes
+ADDON Brick_Checkpoint
+ADDON Brick_Treasure_Chest
+ADDON Sound_Synth4
+ADDON Sound_Beeps
+
+ADDON Print_Letters_Default
+ADDON Print_2x2f_Default
+ADDON Print_1x2f_Default
+ADDON Print_2x2r_Default
+
+ADDON Emote_Alarm
+ADDON Emote_Confusion
+ADDON Emote_Hate
+ADDON Emote_Love
+
+
+//music 
+MUSIC After_School_Special
+
+
+//environment
+$EnvGuiServer::SimpleMode 0
+
+$EnvGuiServer::SkyFile Add-Ons/Sky_Skylands/Skylands.dml
+$EnvGuiServer::WaterFile NONE
+$EnvGuiServer::GroundFile Add-Ons/Ground_Bedroom/zinc03.ground
+
+$EnvGuiServer::SunFlareTopTexture base/lighting/flare2.png
+$EnvGuiServer::SunFlareBottomTexture base/lighting/corona2.png
+$EnvGuiServer::DayOffset 
+$EnvGuiServer::DayLength 300
+$EnvGuiServer::DayCycleEnabled 0
+$EnvGuiServer::DayCycle Add-Ons/DayCycle_Default/default.daycycle
+$EnvGuiServer::SunAzimuth 201.499
+$EnvGuiServer::SunElevation 25.5972
+$EnvGuiServer::DirectLightColor 0.600000 0.600000 0.600000 1.000000
+$EnvGuiServer::AmbientLightColor 0.500000 0.500000 0.500000 1.000000
+$EnvGuiServer::ShadowColor 0.300000 0.300000 0.400000 1.000000
+$EnvGuiServer::SunFlareColor 0.971963 0.971963 0.971963 1.000000
+$EnvGuiServer::SunFlareSize 1.48712
+$EnvGuiServer::VisibleDistance 600
+$EnvGuiServer::FogDistance 500
+$EnvGuiServer::FogHeight 
+$EnvGuiServer::FogColor 0.900000 0.900000 1.000000 1.000000
+$EnvGuiServer::WaterColor 1.0 1.0 1.0 
+$EnvGuiServer::WaterHeight 
+$EnvGuiServer::UnderWaterColor 
+$EnvGuiServer::SkyColor 1.0 1.0 1.0 1.0
+$EnvGuiServer::WaterScrollX 
+$EnvGuiServer::WaterScrollY 
+$EnvGuiServer::GroundScrollX 0
+$EnvGuiServer::GroundScrollY 0
+
+
+//minigame rules
+$MiniGame::Enabled 1
+$MiniGame::GameColor 0
+$MiniGame::InviteOnly 0
+$MiniGame::IncludeAllPlayersBricks 1
+$MiniGame::PlayersUseOwnBricks 0
+
+$MiniGame::Points_BreakBrick 0
+$MiniGame::Points_PlantBrick 0
+$MiniGame::Points_KillPlayer 1
+$MiniGame::Points_KillSelf	-1
+$MiniGame::Points_Die -1
+   
+$MiniGame::RespawnTime 1
+$MiniGame::VehicleRespawnTime 5
+$MiniGame::BrickRespawnTime 30
+
+$MiniGame::UseSpawnBricks 1
+$MiniGame::FallingDamage 0
+$MiniGame::WeaponDamage 0
+$MiniGame::SelfDamage 0
+$MiniGame::VehicleDamage 0
+$MiniGame::BrickDamage 0
+$MiniGame::EnableWand 0
+$MiniGame::EnableBuilding 0
+$MiniGame::EnablePainting 0
+
+$MiniGame::PlayerDataBlockName No-Jet Player
+
+$MiniGame::StartEquipName0 0
+$MiniGame::StartEquipName1 0 
+$MiniGame::StartEquipName2 0
+$MiniGame::StartEquipName3 0
+$MiniGame::StartEquipName4 0

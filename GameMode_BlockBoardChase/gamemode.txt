@@ -1,0 +1,96 @@
+//add-ons to load
+ADDON Brick_Large_Cubes
+ADDON Brick_NewWater
+ADDON Brick_Zones
+ADDON Support_Player_Persistence
+ADDON Emote_Alarm
+ADDON Emote_Confusion
+ADDON Emote_Hate
+ADDON Emote_Love
+ADDON Event_Zones
+ADDON GameMode_BlockBoardChase
+ADDON Light_Animated
+ADDON Light_Basic
+ADDON Particle_Basic
+ADDON Particle_FX_Cans
+ADDON Particle_Player
+ADDON Particle_Tools
+ADDON Print_Letters_Default
+ADDON Sound_Beeps
+ADDON Sound_Phone
+ADDON Sound_Synth4
+
+
+//environment
+$EnvGuiServer::SimpleMode 0
+$EnvGuiServer::SkyFile Add-Ons/Sky_Sunset/Sunset.dml
+$EnvGuiServer::WaterFile Add-Ons/Water_Default/default.water
+$EnvGuiServer::GroundFile Add-Ons/Ground_Plate/plate.ground
+
+$EnvGuiServer::SunFlareTopTexture base/lighting/corona.png
+$EnvGuiServer::SunFlareBottomTexture base/lighting/corona.png
+$EnvGuiServer::DayOffset 0
+$EnvGuiServer::DayLength 300
+$EnvGuiServer::DayCycleEnabled 0
+$EnvGuiServer::DayCycle Add-Ons/DayCycle_Default/default.daycycle
+$EnvGuiServer::SunAzimuth 315
+$EnvGuiServer::SunElevation 28
+$EnvGuiServer::DirectLightColor 0.968628 0.835294 0.796079 1.000000
+$EnvGuiServer::AmbientLightColor 0.600000 0.500000 0.400000 1.000000
+$EnvGuiServer::ShadowColor 0.525490 0.560784 0.682353 1.000000
+$EnvGuiServer::SunFlareColor 0.100000 0.100000 0.100000 1.000000
+$EnvGuiServer::SunFlareSize 3
+$EnvGuiServer::VisibleDistance 900
+$EnvGuiServer::FogDistance 500
+$EnvGuiServer::FogHeight 
+$EnvGuiServer::FogColor 0.580000 0.680000 0.940000 1.000000
+$EnvGuiServer::WaterColor 255 255 255 128
+$EnvGuiServer::WaterHeight 0
+$EnvGuiServer::UnderWaterColor 51 153 153 77
+$EnvGuiServer::SkyColor 1.0 1.0 1.0 1.0
+$EnvGuiServer::WaterScrollX 0
+$EnvGuiServer::WaterScrollY 0
+$EnvGuiServer::GroundColor 0 128 64 255
+$EnvGuiServer::GroundScrollX 0
+$EnvGuiServer::GroundScrollY 0
+$EnvGuiServer::VignetteMultiply 0
+$EnvGuiServer::VignetteColor 0.000000 0.000000 0.000000 0.392157
+
+
+
+//minigame rules
+$MiniGame::Enabled 1
+$MiniGame::GameColor 0
+$MiniGame::InviteOnly 0
+$MiniGame::IncludeAllPlayersBricks 1
+$MiniGame::PlayersUseOwnBricks 0
+
+$MiniGame::Points_BreakBrick 1
+$MiniGame::Points_PlantBrick 0
+$MiniGame::Points_KillPlayer 0
+$MiniGame::Points_KillSelf 0
+$MiniGame::Points_Die 0
+   
+$MiniGame::RespawnTime 5
+$MiniGame::VehicleRespawnTime 30
+$MiniGame::BrickRespawnTime 60
+
+$MiniGame::UseSpawnBricks 1
+$MiniGame::FallingDamage 1
+$MiniGame::WeaponDamage 1
+$MiniGame::SelfDamage 1
+$MiniGame::VehicleDamage 1
+$MiniGame::BrickDamage 1
+$MiniGame::EnableWand 0
+$MiniGame::EnableBuilding 0
+$MiniGame::EnablePainting 0
+
+$MiniGame::PlayerDataBlockName BBCPlayer
+
+$MiniGame::StartEquipName0 BBCPick
+$MiniGame::StartEquipName1 0
+$MiniGame::StartEquipName2 0
+$MiniGame::StartEquipName3 0
+$MiniGame::StartEquipName4 0
+
+$Server::WelcomeMessage \c2Welcome, %1. Get ready to brawl on a giant waterfall!
