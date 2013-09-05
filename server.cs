@@ -4,7 +4,7 @@
 // http://arthur.jfmi.net/m20/ // 'pocket' sized rulebooks, easiest to find the rules, includes main rules as well
 
 if(!isObject(Microlite)) {
-	new SimObject("Microlite") {
+	new ScriptObject("Microlite") {
 		datalList = "name level str dex mind hp ac class race physical subterfuge knowledge communication strmod dexmod mindmod attackmeleemod attackmagicmod attackmisslemod inventory";
 		worldName = "Blockland"; // todo: figure out how to save config data
 		dungeonMaster = getNumKeyId(); // get host bl_id
