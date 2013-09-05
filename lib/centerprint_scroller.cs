@@ -14,7 +14,7 @@ package CenterprintTextScroller {
 				case -3:
 					%client.scroller.pageDown();
 				default:
-					messageClient("\c5You're supposed to use the up and down brick shift keys.")
+					messageClient(%client, '', "\c5You're supposed to use the up and down brick shift keys.")
 			}
 
 		}
@@ -27,6 +27,14 @@ package CenterprintTextScroller {
 		}
 		else
 			return serverCmdPlantBrick(%client);
+	}
+	function serverCmdClearGhostBrick(%client) {
+		if(%client.inScrollableListMode) {
+			messageClient(%client, '', "\c5To scroll line by line, use your shift brick up/down 1/3 keys.");
+			messageClient(%client, '', "\c5To scroll page by page, use your normal shift brick up/down keys.");
+			messageClient(%client, '', "\c5To exit, use your clear ghost brick key.");
+			
+		}
 	}
 }
 
@@ -64,8 +72,9 @@ function ScrollerObject::printLoop(%this, %on) {
 	%this.printLoopSchedule = %this.schedule(250, printLoop, 1);
 
 	for(%i = %this.headLine; %i < %this.linesShown; %i++) {
-		%data = %this.lines[i];
+		%data = %data @ %this.lines[i];
 	}
+	%data = %data @ "Push your clear ghost brick key for help.";
 	%this.client.centerPrint(%data);
 }
 
