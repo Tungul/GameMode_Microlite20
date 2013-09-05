@@ -21,6 +21,13 @@ package CenterprintTextScroller {
 		else
 			return serverCmdShiftBrick(%client, %x, %y, %z);
 	}
+	function serverCmdPlantBrick(%client) {
+		if(%client.inScrollableListMode) {
+			%client.scroller.printLoop(0);
+		}
+		else
+			return serverCmdPlantBrick(%client);
+	}
 }
 
 function CenterprintTextScroller::beginPrint(%this, %client, %data, %linesShown) {
@@ -64,18 +71,37 @@ function ScrollerObject::printLoop(%this, %on) {
 
 function ScrollerObject::pageUp(%this) {
 	%this.headLine -= %this.lineShown;
-	if(%this.headLine - %this.lineShown < 0)
+	if(%this.headLine < 0)
 	{
-		%head = 0;
+		%this.headLine = 0;
 		return;
 	}
 }
 function ScrollerObject::lineUp(%this) {
-	%client = %this.client;
+	%this.headLine -= %this.lineShown;
+	if(%this.headLine < 0)
+	{
+		%this.headLine = 0;
+		return;
+	}
 }
 function ScrollerObject::lineDown(%this) {
-	%client = %this.client;
+	%this.headLine -= %this.lineShown;
+	if(%this.headLine + %this.lineShown > %this.lineCount)
+	{
+		%this.headLine = %this.headLine - %this.lineShown;
+		return;
+	}
 }
 function ScrollerObject::pageDown(%this) {
-	%client = %this.client;
+	%this.headLine -= %this.lineShown;
+	if(%this.headLine < 0)
+	{
+		%this.headLine = 0;
+		return;
+	}
+}
+
+function serverCmdTestCenterprintScroller(%client) {
+	CenterprintTextScroller.beginPrint(%client, "test1\ntest2\ntest3\ntest4\ntest5\ntest6\ntest7\ntest8\nend", 4);
 }
