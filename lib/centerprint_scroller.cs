@@ -50,6 +50,8 @@ function CenterprintTextScroller::beginPrint(%this, %client, %data, %linesShown)
 		return 0;
 
 	%data = strReplace(strReplace(%data, "\n", "\t"), "\r", "");
+	
+	%client.scroller.lineCount = getFieldCount();
 
 	for(%i = 0; %i < getFieldCount(%data)) {
 		%client.scroller.lines[i] = getField(%data, i) + "<br>";
@@ -87,7 +89,7 @@ function ScrollerObject::pageUp(%this) {
 	}
 }
 function ScrollerObject::lineUp(%this) {
-	%this.headLine -= %this.lineShown;
+	%this.headLine -= 1;
 	if(%this.headLine < 0)
 	{
 		%this.headLine = 0;
@@ -95,7 +97,7 @@ function ScrollerObject::lineUp(%this) {
 	}
 }
 function ScrollerObject::lineDown(%this) {
-	%this.headLine -= %this.lineShown;
+	%this.headLine += 1;
 	if(%this.headLine + %this.lineShown > %this.lineCount)
 	{
 		%this.headLine = %this.headLine - %this.lineShown;
@@ -103,10 +105,10 @@ function ScrollerObject::lineDown(%this) {
 	}
 }
 function ScrollerObject::pageDown(%this) {
-	%this.headLine -= %this.lineShown;
-	if(%this.headLine < 0)
+	%this.headLine += %this.lineShown;
+	if(%this.headLine + %this.lineShown > %this.lineCount)
 	{
-		%this.headLine = 0;
+		%this.headLine = %this.headLine - %this.lineShown;
 		return;
 	}
 }
