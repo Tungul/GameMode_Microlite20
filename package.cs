@@ -7,6 +7,9 @@ package Microlite20
 			%parse = getWords(%msg, 1, getWordCount(%msg)); // all words except the first
 			switch$(getWord(%msg, 0))
 			{
+				case "!help":
+					messageClient(%client, '', "\c3GameMode_Microlite20 help");
+					messageClient(%client, '', "\c3!roll [formula] - ");
 				case "!roll": // normal random/spontaneous roll
 					Microlite.rollDice(%client, %parse);
 					break; // not sure this is neccesary, but it is in javascript...
@@ -19,6 +22,8 @@ package Microlite20
 				case "!dm":
 					Microlite.dmcontrol(%client, %parse);
 					break;
+				case "!newchar":
+					Microlite
 					// todo more stuff
 			}
 		}
