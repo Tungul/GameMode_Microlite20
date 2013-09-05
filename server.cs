@@ -12,17 +12,17 @@ if(!isObject(Microlite)) {
 }
 
 function Microlite::loadLibraries() {
-
+exec("./lib/dice.cs");
+exec("./lib/lists.cs");
+exec("./lib/centerprint_scroller.cs");
 }
 
 function Microlite::loadSource() {
-	
+	exec("./src/package.cs");
+	exec("./src/fileio.cs");
+	exec("./src/dm.cs");
+	exec("./src/player.cs");
+	exec("./src/inventory.cs");
 }
 
 exec("microlite/config.cs");
-exec("./dice.cs");
-exec("./package.cs");
-exec("./fileio.cs");
-exec("./lib_lists.cs");
-exec("./dm.cs");
-exec("./player.cs");
