@@ -17,8 +17,3 @@ exec("./fileio.cs");
 exec("./lib_lists.cs");
 exec("./dm.cs");
 exec("./player.cs");
-
-function Microlite::save() // try #1
-{
-	export("Microlite.*", "microlite/config.cs"); // probably won't work, it's a SimObject.
-}
