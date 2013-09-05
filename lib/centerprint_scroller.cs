@@ -1,5 +1,6 @@
 new SimObject("CenterprintTextScroller");
 
+
 package CenterprintTextScroller {
 	function serverCmdShiftBrick(%client, %x, %y, %z) {
 		if(%client.inScrollableListMode) {
@@ -22,12 +23,45 @@ package CenterprintTextScroller {
 	}
 }
 
+function ScrollerObject::beginPrint(%this, %client, %data, %linesShown) {
+
+	if(%data != strReplace(%data, "\t", ""))
+		return 0;
+
+	%data = strReplace(strReplace(%data, "\n", "\t"), "\r", "");
+
+	for(%i = 0; %i < getFieldCount(%data)) {
+		%this.lines[i] = getField(%data, i) + "<br>";
+	}
+
+	%client.ScrollerObject = new scriptObject()
+	{
+		class = "ScrollerObject";
+		data = %data;
+		headLine = 0;
+		linesShown = %linesShown;
+	};
+	%client.ScrollerObject.printLoop(1);
+}
+
+function ScrollerObject::printLoop(%this, %on) {
+	if(isObject(%this.printLoopSchedule))
+		cancel(%this.printLoopSchedule);
+
+	if(!%on)
+		return;
+
+	%this.printLoopSchedule = %this.schedule(250, printLoop, 1);
+
+	for(%i = %this.headLine; %i < %this.linesShown; %i++) {
+		%data = %this.lines[i];
+	}
+	%this.client.centerPrint(%data);
+}
+
 function ScrollerObject::pageUp(%this) {
-	%client = %this.client;
-	%head = %this.headLine;
-	%shown = %this.linesShown;
-	%head - %shown;
-	if(%head - %shown < 0)
+	%this.headLine -= %this.lineShown;
+	if(%this.headLine - %this.lineShown < 0)
 	{
 		%head = 0;
 		return;
