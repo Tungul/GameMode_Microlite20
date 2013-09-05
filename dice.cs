@@ -192,7 +192,7 @@ function striposAny(%str,%possibles,%offset)
 }
 
 
-function rollDice(%client,%str)
+function Microlite.rollDice(%client, %str)
 {
 	%result = parseDiceFormat(%str);
 	%msg = getField(%result,1);
@@ -205,10 +205,8 @@ function rollDice(%client,%str)
 		messageClient(%client,'',%msg);
 	}
 }
-function serverCmdDMRoll(%client,%a,%b,%c,%d,%e,%f,%g,%h,%i,%j) //proll was a good name - privateroll - but only the DM is supposed to use it.
+function Microlite.DMRoll(%client, %str) //proll was a good name - privateroll - but only the DM is supposed to use it.
 {
-	if(!%client.isDM) return;
-	%str = trim(%a SPC %b SPC %c SPC %d SPC %e SPC %f SPC %g SPC %h SPC %i SPC %j);
 	%result = parseDiceFormat(%str);
 	%msg = getField(%result,1);
 	%result = getField(%result,0);
