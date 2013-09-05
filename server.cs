@@ -5,7 +5,7 @@
 
 new SimObject("Microlite")
 {
-	datalList = "name level str dex mind  inventory";
+	datalList = "name level str dex mind hp ac class race physical subterfuge knowledge communication strmod dexmod mindmod attackmeleemod attackmagicmod attackmisslemod inventory";
 	worldName = "Placeholder"; // todo: put this somewhere export("Microlite*", "microlite/config.cs"););
 };
 
