@@ -1,7 +1,5 @@
 //add-ons to load
 ADDON Support_Player_Persistence
-ADDON Projectile_Pong
-ADDON Weapon_Spear
 ADDON Light_Basic
 ADDON Particle_Basic
 ADDON Particle_Player

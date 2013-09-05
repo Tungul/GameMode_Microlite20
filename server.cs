@@ -6,13 +6,19 @@
 new SimObject("Microlite")
 {
 	datalList = "name level str dex mind hp ac class race physical subterfuge knowledge communication strmod dexmod mindmod attackmeleemod attackmagicmod attackmisslemod inventory";
-	worldName = "Blockland"; // todo: put this somewhere export("Microlite*", "microlite/config.cs"););
+	worldName = "Blockland"; // todo: figure out how to save config data
 	dungeonMaster = getNumKeyId(); // get host bl_id
 };
 
+exec("microlite/config.cs");
 exec("./dice.cs");
 exec("./package.cs");
 exec("./fileio.cs");
 exec("./lib_lists.cs");
 exec("./dm.cs");
 exec("./player.cs");
+
+function Microlite::save() // try #1
+{
+	export("Microlite.*", "microlite/config.cs"); // probably won't work, it's a SimObject.
+}
