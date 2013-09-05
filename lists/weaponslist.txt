@@ -1,0 +1,65 @@
+LIST	Light Weapons
+Throwing Axe	8	1d6	10ft
+Dagger	2	1d4	10ft
+Light Hammer	1	1d6	20ft
+Handaxe	6	1d4
+Light Mace	5	1d6
+Light Pick	4	1d4
+Sap	1	1d6
+Sickle	6	1d6
+Short Sword	10	1d6
+LIST	One-Handed Weapons
+Battleaxe	
+Club	
+Flail	
+Longsword	
+Heavy Mace	
+Morningstar	
+Heavy Pick	
+Rapier	
+Scimitar	
+Bastard Sword	
+Trident	
+Dwarven Waraxe	
+Warhammer	
+Whip	
+LIST	Two-Handed Weapons
+Spiked Chain	
+Falchion	
+Heavy Flail	
+Glaive	
+Greataxe	
+Greatclub	
+Greatsword	
+Guisarme	
+Halberd	
+Lance	
+Longspear	
+Quarterstaff	
+Scythe	
+Spear	
+LIST	Ranged Weapons
+Hand Crossbow	
+Heavy Crossbow	
+Light Crossbow	
+Dart	
+Javelin	
+Longbow	
+Net	
+Shortbow	
+Sling	
+LIST	Light Armour
+Padded	2	1
+Leather	10	2
+Studded Leather	25	3
+Chain Shirt	100	4
+LIST	Medium Armour
+Hide	15	3
+Scale Mail	50	4
+Chainmail	150	5
+Breastplate	200	5
+LIST	Heavy Armour
+Splint Mail	200	6
+Banded Mail	250	6
+Half-plate	600	7
+Full Plate	1500	8

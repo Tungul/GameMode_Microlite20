@@ -19,7 +19,7 @@ The other day, I had an inkling to DM a game, but I didn't have a good system an
 I made some web based calculator tools for microlite and then I realized: this would work spectacularly in Blockland! Chat, dice rollers, macros, or at least the scripting language to make them, and my target players all had Blockand, so why not?
 
 That's what this sets out to achieve.  
-[hr]
+
 Features:
 * **Built in character creator, as well as import/export function for sharing** --- *Just join and follow some instructions. Your character is created live.*  
 * **Built in character sheet manager** --- (no guis, sorry (unless someone feels like making them: this is open source)) *You join the server and your data is there.*  
