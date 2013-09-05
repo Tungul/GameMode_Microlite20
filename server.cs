@@ -3,7 +3,7 @@
 // http://1d4chan.org/wiki/Microlite20 // core rules, not 100% up to date
 // http://arthur.jfmi.net/m20/ // 'pocket' sized rulebooks, easiest to find the rules, includes main rules as well
 
-new SimObject("Microlite20") {};
+new SimObject("Microlite") {};
 
 exec("./dice.cs");
 exec("./package.cs");

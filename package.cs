@@ -8,14 +8,17 @@ package Microlite20
 			switch$(getWord(%msg, 0))
 			{
 				case "!roll": // normal random/spontaneous roll
-					rollDice(%client, %parse);
+					Microlite.rollDice(%client, %parse);
 					break; // not sure this is neccesary, but it is in javascript...
 				case "!attack": // attack rolls
-					Microlite20.attackRoll(%parse);
+					Microlite.attackRoll(%parse);
 					break;
 				case "!stealth": // allows for stealth checks and hidden maneuvers.
-					Microlite20.stealthCheck(%client, %parse);
+					Microlite.stealthCheck(%client, %parse);
 					return;
+				case "!dm":
+					Microlite.dmcontrol(%client, %parse);
+					break;
 					// todo more stuff
 			}
 		}
