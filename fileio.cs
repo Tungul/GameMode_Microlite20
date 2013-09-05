@@ -19,6 +19,7 @@ function Microlite::importCharacter(%client)
 	}
 	echo("Imported character.");
 	messageClient(%client, '', "\c5Welcome back to " @ Microlite.worldName @ "," SPC %client.Microlite["name"]);
+	%client.Microlite["hascharacter"] = true;
 	MicroliteFO.close(); MicroliteFO.delete();
 }
 

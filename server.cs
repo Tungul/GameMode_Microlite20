@@ -6,7 +6,8 @@
 new SimObject("Microlite")
 {
 	datalList = "name level str dex mind hp ac class race physical subterfuge knowledge communication strmod dexmod mindmod attackmeleemod attackmagicmod attackmisslemod inventory";
-	worldName = "Placeholder"; // todo: put this somewhere export("Microlite*", "microlite/config.cs"););
+	worldName = "Blockland"; // todo: put this somewhere export("Microlite*", "microlite/config.cs"););
+	dungeonMaster = ; // get host bl_id
 };
 
 exec("./dice.cs");
