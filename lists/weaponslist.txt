@@ -64,3 +64,10 @@ Splint Mail	200	6
 Banded Mail	250	6
 Half Plate	600	7
 Full Plate	1500	8
+LIST	Shields
+Buckler	15	1
+Light Wooden Shield	3	1
+Light Steel Shield	9	1
+Heavy Wooden Shield	7	2
+Heavy Steel Shield	20	2
+Tower Shield	30	4
