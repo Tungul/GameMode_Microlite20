@@ -12,9 +12,9 @@ if(!isObject(Microlite)) {
 }
 
 function Microlite::loadLibraries() {
-exec("./lib/dice.cs");
-exec("./lib/lists.cs");
-exec("./lib/centerprint_scroller.cs");
+	exec("./lib/dice.cs");
+	exec("./lib/lists.cs");
+	exec("./lib/centerprint_scroller.cs");
 }
 
 function Microlite::loadSource() {
