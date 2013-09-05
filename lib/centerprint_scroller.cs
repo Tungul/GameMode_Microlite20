@@ -6,13 +6,13 @@ package CenterprintTextScroller {
 		if(%client.inScrollableListMode) {
 			switch(%z) {
 				case 3:
-					%client.ScrollerObject.pageUp();
+					%client.scroller.pageUp();
 				case 1:
-					%client.ScrollerObject.lineUp();
+					%client.scroller.lineUp();
 				case -1:
-					%client.ScrollerObject.lineDown();
+					%client.scroller.lineDown();
 				case -3:
-					%client.ScrollerObject.pageDown();
+					%client.scroller.pageDown();
 				default:
 					messageClient("\c5You're supposed to use the up and down brick shift keys.")
 			}
@@ -23,25 +23,24 @@ package CenterprintTextScroller {
 	}
 }
 
-function ScrollerObject::beginPrint(%this, %client, %data, %linesShown) {
+function CenterprintTextScroller::beginPrint(%this, %client, %data, %linesShown) {
+	%client.scroller = new scriptObject()
+	{
+		class = "ScrollerObject";
+		headLine = 0;
+		linesShown = %linesShown;
+	};
 
-	if(%data != strReplace(%data, "\t", ""))
+	if(%data != strReplace(%data, "\t", "")) // can't handle \t within text yet, sorry. currently using a cheapass method.
 		return 0;
 
 	%data = strReplace(strReplace(%data, "\n", "\t"), "\r", "");
 
 	for(%i = 0; %i < getFieldCount(%data)) {
-		%this.lines[i] = getField(%data, i) + "<br>";
+		%client.scroller.lines[i] = getField(%data, i) + "<br>";
 	}
 
-	%client.ScrollerObject = new scriptObject()
-	{
-		class = "ScrollerObject";
-		data = %data;
-		headLine = 0;
-		linesShown = %linesShown;
-	};
-	%client.ScrollerObject.printLoop(1);
+	%client.scroller.printLoop(1);
 }
 
 function ScrollerObject::printLoop(%this, %on) {
@@ -49,7 +48,11 @@ function ScrollerObject::printLoop(%this, %on) {
 		cancel(%this.printLoopSchedule);
 
 	if(!%on)
+	{
+		%this.client.inScrollableListMode = 0;
 		return;
+	}
+	%this.client.inScrollableListMode = 1;
 
 	%this.printLoopSchedule = %this.schedule(250, printLoop, 1);
 
