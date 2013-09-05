@@ -11,3 +11,7 @@ new SimObject("Microlite")
 
 exec("./dice.cs");
 exec("./package.cs");
+exec("./fileio.cs");
+exec("./lib_lists.cs");
+exec("./dm.cs");
+exec("./player.cs");
