@@ -13,7 +13,9 @@ function Microlite::importCharacter(%client)
 	while(!MicroliteFO.isEOF())
 	{
 		%line = MicroliteFO.readLine();
-		Microlite::parseCharacterLine(%client, %line);
+		%var = getField(%line, 0);
+		%data = getField(%line, 1);
+		%client.Microlite[%var] = %data;
 	}
 	echo("Loaded character.");
 	messageClient(%client, '', "\c5Welcome back to " @ Microlite.worldName @ "," SPC %client.MLCharacterName);
