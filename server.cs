@@ -3,7 +3,11 @@
 // http://1d4chan.org/wiki/Microlite20 // core rules, not 100% up to date
 // http://arthur.jfmi.net/m20/ // 'pocket' sized rulebooks, easiest to find the rules, includes main rules as well
 
-new SimObject("Microlite") {};
+new SimObject("Microlite")
+{
+	datalList = "name level str dex mind  inventory";
+	worldName = "Placeholder"; // todo: put this somewhere export("Microlite*", "microlite/config.cs"););
+};
 
 exec("./dice.cs");
 exec("./package.cs");
