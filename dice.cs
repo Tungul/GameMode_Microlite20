@@ -192,7 +192,7 @@ function striposAny(%str,%possibles,%offset)
 }
 
 
-function Microlite.rollDice(%client, %str)
+function Microlite::rollDice(%this, %client, %str)
 {
 	%result = parseDiceFormat(%str);
 	%msg = getField(%result,1);
@@ -205,7 +205,7 @@ function Microlite.rollDice(%client, %str)
 		messageClient(%client,'',%msg);
 	}
 }
-function Microlite.DMRoll(%client, %str) //proll was a good name - privateroll - but only the DM is supposed to use it.
+function Microlite::DMRoll(%this, %client, %str) //proll was a good name - privateroll - but only the DM is supposed to use it.
 {
 	%result = parseDiceFormat(%str);
 	%msg = getField(%result,1);

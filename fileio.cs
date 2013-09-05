@@ -1,4 +1,4 @@
-function Microlite::importCharacter(%client)
+function Microlite::importCharacter(%this, %client)
 {
 	echo("Importing character for " @ %client.blid);
 	%path = "microlite/" @ %client.blid @ ".txt");
@@ -18,21 +18,21 @@ function Microlite::importCharacter(%client)
 		%client.Microlite[%var] = %data;
 	}
 	echo("Imported character.");
-	messageClient(%client, '', "\c5Welcome back to " @ Microlite.worldName @ "," SPC %client.Microlite["name"]);
+	messageClient(%client, '', "\c5Welcome back to " @ %this.worldName @ "," SPC %client.Microlite["name"]);
 	%client.Microlite["hascharacter"] = true;
 	MicroliteFO.close(); MicroliteFO.delete();
 }
 
-function Microlite::exportCharacter(%client)
+function Microlite::exportCharacter(%this, %client)
 {
 	echo("Exporting character for " @ %client.blid);
 	%path = "microlite/" @ %client.blid @ ".txt");
 	
 	new fileObject("MicroliteFO");
 	MicroliteFO.openForWrite(%path);
-	for(%i = 0; %i < getWordCount(Microlite.dataList); %i++)
+	for(%i = 0; %i < getWordCount(%this.dataList); %i++)
 	{
-		%var = getWord(Microlite.dataList, i);
+		%var = getWord(%this.dataList, i);
 		MicroliteFO.writeLine(%var @ "\t" @ %client.Microlite[%var]);
 	}
 	echo("Exported character.");

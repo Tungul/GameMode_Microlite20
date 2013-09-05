@@ -1,4 +1,4 @@
-function Microlite::createCharacter(%client, %data) // semi-recursive function for "step by step" character creation
+function Microlite::createCharacter(%this, %client, %data) // semi-recursive function for "step by step" character creation
 {
 	
 	if(%client.Microlite["hasChar" && !%override)

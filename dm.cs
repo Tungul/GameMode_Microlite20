@@ -1,8 +1,8 @@
-function Microlite.DMControl(%client, %data) // pulled from chat
+function Microlite::DMControl(%this, %client, %data) // pulled from chat
 {
 	%var = getWord(%line, 0);
 	%data = getWords(%line, 1, getWordCount(%line));
-	if(Microlite.dungeonMaster != %client.bl_id)
+	if(%this.dungeonMaster != %client.bl_id)
 	{
 		messageClient(%client, '', "\c6You are not the DM.");
 		return;
@@ -12,9 +12,9 @@ function Microlite.DMControl(%client, %data) // pulled from chat
 		case "help":
 			messageClient(%client, '', "help goes here loel")
 		case "worldname":
-			Microlite.worldName = %data;
-			messageAll('', "\c6The DM has updated the name of the world. Welcome to \c3" @ Microlite.worldName @ "\c6!");
-			Microlite.save("microlite/config.cs");
+			%this.worldName = %data;
+			messageAll('', "\c6The DM has updated the name of the world. Welcome to \c3" @ %this.worldName @ "\c6!");
+			%this.save("microlite/config.cs");
 			for(%i = 0; %i < clientGroup.getCount(); %i++)
 			{
 				%cl = clientGroup.getObject(%i);
@@ -29,14 +29,14 @@ function Microlite.DMControl(%client, %data) // pulled from chat
 				messageClient(%client, '', "\c6The proper usage of this command is \c5!DM switchdm TARGET_BLID");
 				return;
 			}
-			Microlite.dungeonMaster = %target;
-			messageClient(findClientByBL_ID(Microlite.dungeonMaster), '', "\c4You are now the Dungeon Master. Say !DM help for information on DM-specific commands.");
-			Microlite.save("microlite/config.cs");
+			%this.dungeonMaster = %target;
+			messageClient(findClientByBL_ID(%this.dungeonMaster), '', "\c4You are now the Dungeon Master. Say !DM help for information on DM-specific commands.");
+			%this.save("microlite/config.cs");
 			break;
 		case "togglewebserver":
 			messageClient(%client, '', "\c6Attempting to toggle webserver... please stand by...");
-			Microlite.toggleWebserver();
-			Microlite.save("microlite/config.cs");
+			%this.toggleWebserver();
+			%this.save("microlite/config.cs");
 			break;
 		default:
 			messageClient(%client, '', "\c6I think I missed something - you didn't input a command. Here's the help function: !DM help");
