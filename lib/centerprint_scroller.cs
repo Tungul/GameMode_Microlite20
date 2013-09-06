@@ -64,8 +64,7 @@ function ScrollerObject::printLoop(%this, %on) {
 	if(isObject(%this.printLoopSchedule))
 		cancel(%this.printLoopSchedule);
 
-	if(!%on)
-	{
+	if(!%on) {
 		%this.client.inScrollableListMode = 0;
 		return;
 	}
@@ -82,32 +81,28 @@ function ScrollerObject::printLoop(%this, %on) {
 
 function ScrollerObject::pageUp(%this) {
 	%this.headLine -= %this.lineShown;
-	if(%this.headLine < 0)
-	{
+	if(%this.headLine < 0) {
 		%this.headLine = 0;
 		return;
 	}
 }
 function ScrollerObject::lineUp(%this) {
 	%this.headLine -= 1;
-	if(%this.headLine < 0)
-	{
+	if(%this.headLine < 0) {
 		%this.headLine = 0;
 		return;
 	}
 }
 function ScrollerObject::lineDown(%this) {
 	%this.headLine += 1;
-	if(%this.headLine + %this.lineShown > %this.lineCount)
-	{
+	if(%this.headLine + %this.lineShown > %this.lineCount) {
 		%this.headLine = %this.headLine - %this.lineShown;
 		return;
 	}
 }
 function ScrollerObject::pageDown(%this) {
 	%this.headLine += %this.lineShown;
-	if(%this.headLine + %this.lineShown > %this.lineCount)
-	{
+	if(%this.headLine + %this.lineShown > %this.lineCount) {
 		%this.headLine = %this.headLine - %this.lineShown;
 		return;
 	}
