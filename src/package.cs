@@ -17,7 +17,7 @@ package Microlite20 {
 					Microlite.stealthCheck(%client, %parse);
 					return;
 				case "check": // make a str+dex check to dodge the falling rock!
-					Microlite.check(%client, %parse);
+					Microlite.rollCheck(%client, %parse);
 					return;
 				case "inventory":
 					Microlite.inventory(%client, %parse); // inventory actions
