@@ -77,7 +77,7 @@ function ScrollerObject::printLoop(%this, %on) {
 	for(%i = %this.headLine; %i < %this.linesShown; %i++) {
 		%data = %data @ %this.lines[i];
 	}
-	%this.client.centerPrint(%data);
+	%this.client.centerPrint("<color:ffffff>" @ %data);
 }
 
 function ScrollerObject::pageUp(%this) {
@@ -97,14 +97,14 @@ function ScrollerObject::lineUp(%this) {
 function ScrollerObject::lineDown(%this) {
 	%this.headLine += 1;
 	if(%this.headLine + %this.lineShown > %this.lineCount) {
-		%this.headLine = %this.headLine - %this.lineShown;
+		%this.headLine = %this.lineCount - %this.lineShown;
 		return;
 	}
 }
 function ScrollerObject::pageDown(%this) {
 	%this.headLine += %this.lineShown;
 	if(%this.headLine + %this.lineShown > %this.lineCount) {
-		%this.headLine = %this.headLine - %this.lineShown;
+		%this.headLine = %this.lineCount - %this.lineShown;
 		return;
 	}
 }

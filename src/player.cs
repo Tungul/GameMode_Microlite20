@@ -1,6 +1,6 @@
 function Microlite::createCharacter(%this, %client, %data) {// semi-recursive function for "step by step" character creation
 	%cmd = getWord(%data, 0);
-	%parse = getWords(%data, 1, getWordCount(%data));
+	%parse = restWords(%data);
 
 	if(%client.Microlite["hasChar"] && !%override)
 	{
