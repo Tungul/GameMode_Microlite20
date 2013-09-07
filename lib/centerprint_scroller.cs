@@ -14,7 +14,7 @@ package CenterprintTextScroller {
 				case -3:
 					%client.scroller.pageDown();
 				default:
-					messageClient(%client, '', "\c5You're supposed to use the up and down brick shift keys.")
+					messageClient(%client, '', "\c5You're supposed to use the up and down brick shift keys."); // -- Meshiest (Added semicolon)
 			}
 
 		}
@@ -36,7 +36,7 @@ package CenterprintTextScroller {
 			
 		}
 	}
-}
+}; // --Meshiest (Semicolon missing)
 
 function CenterprintTextScroller::beginPrint(%this, %client, %data, %linesShown) {
 	%client.scroller = new scriptObject()
@@ -53,8 +53,8 @@ function CenterprintTextScroller::beginPrint(%this, %client, %data, %linesShown)
 	
 	%client.scroller.lineCount = getFieldCount();
 
-	for(%i = 0; %i < getFieldCount(%data)) {
-		%client.scroller.lines[i] = getField(%data, i) + "<br>";
+	for(%i = 0; %i < getFieldCount(%data);%i++) { // --Meshiest (Added %i++)
+		%client.scroller.lines[i] = getField(%data, i) @ "<br>"; // --Meshiest (String concat is @, not +)
 	}
 
 	%client.scroller.printLoop(1);

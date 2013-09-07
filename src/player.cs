@@ -1,15 +1,15 @@
-function Microlite::createCharacter(%this, %client, %data) {// semi-recursive function for "step by step" character creation
+function Microlite::createCharacter(%this, %client, %data) // semi-recursive function for "step by step" character creation
+{
+	
+//<<<<<<< HEAD
 	%cmd = getWord(%data, 0);
 	%parse = getWords(%data, 1, getWordCount(%data));
 
-	if(%client.Microlite["hasChar" && !%override)
+	if(%client.Microlite["hasChar"] && !%override)
 	{
 		messageClient(%client, '', "\c0---Warning---");
-		messageClient(%client, '', "\c5You already have a character, if you want to make a new one run \c3!newchar override");
+		messageClient(%client, '', "\c3You already have a character, if you want to make a new one run !newchar");
 	}
-}
-
-function Microlite::createCharacterBackend(%this, %client, %data) {
 	switch(%phase)
 	{
 		case 0: // info and name, race, class
@@ -24,8 +24,8 @@ function Microlite::createCharacterBackend(%this, %client, %data) {
 }
 
 function Microlite::rollCheck(%this, %client, %data) {
-	%cmd = getWord(%data, 0);
-	%parse = getWords(%data, 1, getWordCount(%data));
+	%cmd = firstWord(%data);
+	%parse = restWords(%data);
 	
 	switch$(%cmd) {
 		case "phystr":
@@ -41,4 +41,22 @@ function Microlite::rollCheck(%this, %client, %data) {
 		case "knowmind":
 			Microlite.rollDice(%client, "1d20+" @ (%client.microlite["knowledge"] + %client.microlite["mindmod"]));
 	}
+//=======
+	if(%client.Microlite["hasChar"] && !%override) // --Meshiest (Added Bracket)
+	{
+		messageClient(%client, '', "\c0---Warning---");
+		messageClient(%client, '', "\c3You already have a character, if you want to make a new one run !");
+      switch(%phase)
+      {
+         case 0: // info and name, race, class
+         case 1: // str, dex, mind rolls - "choose an order from highest to lowest for these three stats"
+         case 2: // hp
+         case 3: // armor - list of purchaseable armor and benefit it provides, pick one 
+         case 4: // fastpack
+         case 5: // weapons
+         case 6: // misc. inventory
+         
+      }
+	} // --Meshiest (Added missing brace) 
+//>>>>>>> Fixed syntax errors
 }

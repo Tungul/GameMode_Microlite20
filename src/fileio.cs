@@ -1,14 +1,14 @@
 function Microlite::importCharacter(%this, %client)
 {
 	echo("Importing character for " @ %client.blid);
-	%path = "microlite/" @ %client.blid @ ".txt");
+	%path = "microlite/" @ %client.blid @ ".txt";
 	if(!isFile(%path))
 	{
 		echo("No character found.");
 		messageClient(%client, '', "\c6I couldn't find a character for you, you can make one with !newCharacter");
 		return;
 	}
-	new fileObject("MicroliteFO");
+   new fileObject("MicroliteFO");
 	MicroliteFO.openForRead(%path);
 	while(!MicroliteFO.isEOF())
 	{
@@ -26,7 +26,7 @@ function Microlite::importCharacter(%this, %client)
 function Microlite::exportCharacter(%this, %client)
 {
 	echo("Exporting character for " @ %client.blid);
-	%path = "microlite/" @ %client.blid @ ".txt");
+	%path = "microlite/" @ %client.blid @ ".txt";
 	
 	new fileObject("MicroliteFO");
 	MicroliteFO.openForWrite(%path);

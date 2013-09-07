@@ -9,10 +9,10 @@ package Microlite20 {
 					messageClient(%client, '', "\c3!roll [formula] - ");
 				case "roll": // normal random/spontaneous roll
 					Microlite.rollDice(%client, %parse);
-					break; // not sure this is neccesary, but it is in javascript...
+					//break; // not sure this is neccesary, but it is in javascript...
 				case "attack": // attack rolls
 					Microlite.attackRoll(%parse);
-					break;
+					//break; // --Meshiest (These breaks are causing problems)
 				case "stealth": // allows for stealth checks and hidden maneuvers.
 					Microlite.stealthCheck(%client, %parse);
 					return;
@@ -24,13 +24,13 @@ package Microlite20 {
 					return;
 				case "dm":
 					Microlite.dmcontrol(%client, %parse);
-					break;
+					//break;
 				case "newchar":
-					Microlite
+					//Microlite
 					// todo more stuff
 			}
 		}
 		// don't forget in character chat!
 		return parent::serverCmdMessageSent(%client, %msg);
 	}
-}
+}; // --Meshiest (Added semicolon)

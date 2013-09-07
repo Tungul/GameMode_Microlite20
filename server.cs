@@ -11,13 +11,23 @@ if(!isObject(Microlite)) {
 	};
 }
 
-function Microlite::loadLibraries() {
+function Microlite::execDir(%this,%p)
+{
+   %p="Add-ons/Gamemode_Microlite20/*.cs";
+   for(%f=findFirstFile(%p);%f!$="";%f=findNextFile(%p))
+      exec(%f);
+}
+function Microlite::loadLibraries(%this) {
+   %this.execDir("Add-ons/Gamemode_MicroLite20/lib/*.cs");
+   return;
 	exec("./lib/dice.cs");
 	exec("./lib/lists.cs");
 	exec("./lib/centerprint_scroller.cs");
 }
 
 function Microlite::loadSource() {
+   %this.execDir("Add-ons/Gamemode_MicroLite20/src/*.cs");
+   return;
 	exec("./src/package.cs");
 	exec("./src/fileio.cs");
 	exec("./src/dm.cs");
