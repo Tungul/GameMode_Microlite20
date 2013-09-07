@@ -1,14 +1,15 @@
-function Microlite::createCharacter(%this, %client, %data) // semi-recursive function for "step by step" character creation
-{
-	
+function Microlite::createCharacter(%this, %client, %data) {// semi-recursive function for "step by step" character creation
 	%cmd = getWord(%data, 0);
 	%parse = getWords(%data, 1, getWordCount(%data));
 
 	if(%client.Microlite["hasChar" && !%override)
 	{
 		messageClient(%client, '', "\c0---Warning---");
-		messageClient(%client, '', "\c3You already have a character, if you want to make a new one run !newchar");
+		messageClient(%client, '', "\c5You already have a character, if you want to make a new one run \c3!newchar override");
 	}
+}
+
+function Microlite::createCharacterBackend(%this, %client, %data) {
 	switch(%phase)
 	{
 		case 0: // info and name, race, class
