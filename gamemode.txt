@@ -1,23 +1,49 @@
 //add-ons to load
-ADDON Support_Player_Persistence
-ADDON Light_Basic
-ADDON Particle_Basic
-ADDON Particle_Player
-ADDON Player_No_Jet
-ADDON Brick_Large_Cubes
-ADDON Brick_Checkpoint
-ADDON Brick_Treasure_Chest
 
-ADDON Print_Letters_Default
-ADDON Print_2x2f_Default
-ADDON Print_1x2f_Default
-ADDON Print_2x2r_Default
+ADDON Brick_Arch
+ADDON Brick_Checkpoint
+ADDON Brick_Large_Cubes
+ADDON Brick_V15
 
 ADDON Emote_Alarm
 ADDON Emote_Confusion
 ADDON Emote_Hate
 ADDON Emote_Love
 
+ADDON Item_Key
+
+ADDON Light_Animated
+ADDON Light_Basic
+
+ADDON Particle_Basic
+ADDON Particle_FX_Cans
+ADDON Particle_Grass
+ADDON Particle_Player
+ADDON Particle_Tools
+
+ADDON Player_No_Jet
+
+ADDON Print_1x2f_BLPRemote
+ADDON Print_1x2f_Default
+ADDON Print_2x2f_Default
+ADDON Print_2x2r_Default
+ADDON Print_2x2r_Monitor3
+ADDON Print_Letters_Default
+
+ADDON Sound_Beeps
+ADDON Sound_Phone
+ADDON Sound_Synth4
+
+ADDON Vehicle_Horse
+ADDON Vehicle_Jeep
+ADDON Vehicle_Magic_Carpet
+ADDON Vehicle_Pirate_Cannon
+ADDON Vehicle_Rowboat
+ADDON Vehicle_Tank
+
+ADDON Weapon_Bow // maybe as props for bots?
+ADDON Weapon_Spear
+ADDON Weapon_Sword
 
 //music NONE
 
