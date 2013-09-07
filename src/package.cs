@@ -9,10 +9,8 @@ package Microlite20 {
 					messageClient(%client, '', "\c3!roll [formula] - ");
 				case "roll": // normal random/spontaneous roll
 					Microlite.rollDice(%client, %parse);
-					break; // not sure this is neccesary, but it is in javascript...
 				case "attack": // attack rolls
 					Microlite.attackRoll(%parse);
-					break;
 				case "stealth": // allows for stealth checks and hidden maneuvers.
 					Microlite.stealthCheck(%client, %parse);
 					return;
@@ -24,7 +22,6 @@ package Microlite20 {
 					return;
 				case "dm":
 					Microlite.dmcontrol(%client, %parse);
-					break;
 				case "newchar":
 					Microlite
 					// todo more stuff
@@ -33,4 +30,5 @@ package Microlite20 {
 		// don't forget in character chat!
 		return parent::serverCmdMessageSent(%client, %msg);
 	}
-}
+};
+activatePackage("Microltie20");

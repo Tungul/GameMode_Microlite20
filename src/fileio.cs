@@ -5,7 +5,7 @@ function Microlite::importCharacter(%this, %client)
 	if(!isFile(%path))
 	{
 		echo("No character found.");
-		messageClient(%client, '', "\c6I couldn't find a character for you, you can make one with !newCharacter");
+		messageClient(%client, '', "\c6I couldn't find a character for you, you can make one with \c3!newchar");
 		return;
 	}
 	new fileObject("MicroliteFO");
@@ -18,7 +18,7 @@ function Microlite::importCharacter(%this, %client)
 		%client.Microlite[%var] = %data;
 	}
 	echo("Imported character.");
-	messageClient(%client, '', "\c5Welcome back to " @ %this.worldName @ "," SPC %client.Microlite["name"]);
+	messageClient(%client, '', "\c6Welcome back to \c3" @ %this.worldName @ "\c6,\c4" SPC %client.Microlite["name"]);
 	%client.Microlite["hascharacter"] = true;
 	MicroliteFO.close(); MicroliteFO.delete();
 }

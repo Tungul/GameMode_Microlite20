@@ -2,7 +2,7 @@ function Microlite::createCharacter(%this, %client, %data) {// semi-recursive fu
 	%cmd = getWord(%data, 0);
 	%parse = getWords(%data, 1, getWordCount(%data));
 
-	if(%client.Microlite["hasChar" && !%override)
+	if(%client.Microlite["hasChar"] && !%override)
 	{
 		messageClient(%client, '', "\c0---Warning---");
 		messageClient(%client, '', "\c5You already have a character, if you want to make a new one run \c3!newchar override");
