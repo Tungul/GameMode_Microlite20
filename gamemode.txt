@@ -1,5 +1,7 @@
 //add-ons to load
 
+ADDON GameMode_Microlite20
+
 ADDON Brick_Arch
 ADDON Brick_Checkpoint
 ADDON Brick_Large_Cubes
