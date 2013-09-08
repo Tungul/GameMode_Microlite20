@@ -13,18 +13,18 @@ if(!isObject(Microlite)) {
 
 function Microlite::loadLibraries() {
 	echo("Loading Microlite libraries.");
-	exec("./lib/dice.cs");
-	exec("./lib/lists.cs");
-	exec("./lib/centerprint_scroller.cs");
+	exec("lib/dice.cs");
+	exec("lib/lists.cs");
+	exec("lib/centerprint_scroller.cs");
 }
 
 function Microlite::loadSource() {
 	echo("Loading Microlite source.");
-	exec("./src/package.cs");
-	exec("./src/fileio.cs");
-	exec("./src/dm.cs");
-	exec("./src/player.cs");
-	exec("./src/inventory.cs");
+	exec("src/package.cs");
+	exec("src/fileio.cs");
+	exec("src/dm.cs");
+	exec("src/player.cs");
+	exec("src/inventory.cs");
 }
 
 if(isFile("config/microlite.cs")) {
