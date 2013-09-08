@@ -11,20 +11,36 @@ if(!isObject(Microlite)) {
 	};
 }
 
+// function Microlite::loadLibraries() {
+// 	echo("Loading Microlite libraries.");
+// 	exec("./lib/dice.cs");
+// 	exec("./lib/lists.cs");
+// 	exec("./lib/centerprint_scroller.cs");
+// }
+
+// function Microlite::loadSource() {
+// 	echo("Loading Microlite source.");
+// 	exec("./src/package.cs");
+// 	exec("./src/fileio.cs");
+// 	exec("./src/dm.cs");
+// 	exec("./src/player.cs");
+// 	exec("./src/inventory.cs");
+// }
+
 function Microlite::loadLibraries() {
 	echo("Loading Microlite libraries.");
-	exec("Add-Ons/GameMode_Microlite20/lib/dice.cs");
-	exec("Add-Ons/GameMode_Microlite20/lib/lists.cs");
-	exec("Add-Ons/GameMode_Microlite20/lib/centerprint_scroller.cs");
+	exec("dice.cs");
+	exec("lists.cs");
+	exec("centerprint_scroller.cs");
 }
 
 function Microlite::loadSource() {
 	echo("Loading Microlite source.");
-	exec("Add-Ons/GameMode_Microlite20/src/package.cs");
-	exec("Add-Ons/GameMode_Microlite20/src/fileio.cs");
-	exec("Add-Ons/GameMode_Microlite20/src/dm.cs");
-	exec("Add-Ons/GameMode_Microlite20/src/player.cs");
-	exec("Add-Ons/GameMode_Microlite20/src/inventory.cs");
+	exec("package.cs");
+	exec("fileio.cs");
+	exec("dm.cs");
+	exec("player.cs");
+	exec("inventory.cs");
 }
 
 if(isFile("config/microlite.cs")) {
