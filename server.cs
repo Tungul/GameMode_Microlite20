@@ -25,4 +25,6 @@ function Microlite::loadSource() {
 	exec("./src/inventory.cs");
 }
 
-exec("microlite/config.cs");
+if(isFile("config/microlite.cs")) {
+	exec("config/microlite.cs");
+}
