@@ -42,11 +42,11 @@ function Microlite::DMControl(%this, %client, %data) // pulled from chat
 
 		case "target": // temporary, ideally we'll have multi monster tracking allowing players to target individual monsters at a whim
 			Microlite.CurrentDC = %data;
-			messageClient(%client, '', "\c6DC set to \c3" + %data);
+			messageClient(%client, '', "\c6DC set to \c3" + Microlite.CurrentDC);
 
 		case "damage":
 			Microlite.dealDamage(getWord(%data, 0), getWord(%data, 1));
-			messageAll('', "\c6The DM has dealt\c3" SPC getWord(%data, 1) SPC "\c6points of damage to\c3" SPC getWord(%data, 0))
+			messageAll('', "\c6The DM has dealt\c3" SPC getWord(%data, 1) SPC "\c6points of damage to\c3" SPC getWord(%data, 0));
 
 		// case "togglewebserver":
 		// 	messageClient(%client, '', "\c6Attempting to toggle webserver... please stand by...");

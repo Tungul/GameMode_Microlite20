@@ -1,4 +1,4 @@
-new SimObject("CenterprintTextScroller");
+new scriptObject("CenterprintTextScroller");
 
 
 package CenterprintTextScroller {

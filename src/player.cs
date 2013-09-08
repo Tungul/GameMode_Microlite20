@@ -67,7 +67,7 @@ function Microlite::rollCheck(%this, %client, %data) {
 function Microlite::rollAttack(%this, %client, %data) {
 	%cmd = firstWord(%data);
 	%parse = restWords(%data);
-	%two-handed = 
+	// %two-handed = 
 	
 	switch$(%cmd) {
 		case "melee":

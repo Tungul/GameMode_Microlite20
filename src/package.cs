@@ -1,7 +1,7 @@
 package Microlite20 {
 	function serverCmdMessageSent(%client, %msg)	{
 		if(getSubStr(%msg, 0, 1) $= "!") {// check for special crap, otherwise don't parse anything
-			%cmd = getSubStr(getWord(%msg, 0), 1, strLen(%cmd));
+			%cmd = getSubStr(firstWord(%msg), 1, strLen(%msg));
 			%parse = restWords(%msg); // all words except the first
 			switch$(%cmd) {
 				case "help":
@@ -16,7 +16,7 @@ package Microlite20 {
 					Microlite.rollDice(%client, %parse);
 
 				case "attack": // attack rolls
-					Microlite.attackRoll(%parse);
+					Microlite.rollAttack(%parse);
 
 				case "check": // make a str+dex check to dodge the falling rock!
 					Microlite.rollCheck(%client, %parse);
@@ -41,4 +41,4 @@ package Microlite20 {
 		return parent::serverCmdMessageSent(%client, %msg);
 	}
 };
-activatePackage("Microltie20");
+activatePackage("Microlite20");
