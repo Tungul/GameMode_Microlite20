@@ -12,12 +12,14 @@ if(!isObject(Microlite)) {
 }
 
 function Microlite::loadLibraries() {
+	echo("Loading Microlite libraries.");
 	exec("./lib/dice.cs");
 	exec("./lib/lists.cs");
 	exec("./lib/centerprint_scroller.cs");
 }
 
 function Microlite::loadSource() {
+	echo("Loading Microlite source.");
 	exec("./src/package.cs");
 	exec("./src/fileio.cs");
 	exec("./src/dm.cs");
@@ -28,3 +30,6 @@ function Microlite::loadSource() {
 if(isFile("config/microlite.cs")) {
 	exec("config/microlite.cs");
 }
+
+Microlite.loadLibraries();
+Microlite.loadSource();
