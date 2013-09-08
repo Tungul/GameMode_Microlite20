@@ -47,6 +47,7 @@ ADDON Weapon_Sword
 
 ADDON Weapon_Rocket_Launcher
 ADDON Projectile_GravityRocket
+ADDON Support_Player_Persistence
 
 //music NONE
 
