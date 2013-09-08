@@ -41,7 +41,7 @@ ADDON Vehicle_Pirate_Cannon
 ADDON Vehicle_Rowboat
 ADDON Vehicle_Tank
 
-ADDON Weapon_Bow // maybe as props for bots?
+ADDON Weapon_Bow
 ADDON Weapon_Spear
 ADDON Weapon_Sword
 
