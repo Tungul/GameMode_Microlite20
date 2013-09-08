@@ -45,6 +45,9 @@ ADDON Weapon_Bow
 ADDON Weapon_Spear
 ADDON Weapon_Sword
 
+ADDON Weapon_Rocket_Launcher
+ADDON Projectile_GravityRocket
+
 //music NONE
 
 
