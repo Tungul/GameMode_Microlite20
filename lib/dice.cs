@@ -199,8 +199,8 @@ function Microlite::rollDice(%this, %client, %str)
 	%result = getField(%result,0);
 	if(%result)
 	{
-		messageAllExcept(%client,'',"\c3" @ %client.getPlayerName() SPC %msg);
-		messageClient(%client,'',"\c6You" SPC %msg);
+		messageAll('',"\c3" @ %client.getPlayerName() SPC %msg);
+		// messageClient(%client,'',"\c6You" SPC %msg);
 	} else {
 		messageClient(%client,'',%msg);
 	}
