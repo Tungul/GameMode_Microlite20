@@ -42,5 +42,11 @@ package Microlite20 {
 		else
 			return parent::serverCmdMessageSent(%client, %msg);
 	}
+	function serverCmdTeamMessageSent(%client, %msg) {
+		if(%client.Microlite["inCharGen"])
+			Microlite.characterCreatorParser(%client, %msg);
+		else
+			return parent::serverCmdTeamMessageSent(%client, %msg)
+	}
 };
 activatePackage("Microlite20");

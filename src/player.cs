@@ -8,20 +8,76 @@ function Microlite::createCharacter(%this, %client, %data) {// semi-recursive fu
 		return;
 	}
 
-	%client.Microlite["charphase"] = 0;
+	%client.Microlite["charphase"] = "info";
+	%client.Microlite["hasChar"] = false;
+	%client.Microlite["inCharGen"] = true;
+	Microlite.characterCreatorParser(%client);
+}
 
-	switch(%client.Microlite["charphase"])
+function Microlite::characterCreatorParser(%this, %client, %data) {
+	switch$(%client.Microlite["charphase"])
 	{
-		case 0: // intro
-			%client.Microlite["charphase"] = 1;
-			%client.Microlite["hasChar"] = false;
-			messageClient(%client, '', "\c6Welcome to the character creator, you're in phase 1.");
+		case "info": // intro
+			messageClient(%client, '', "\c6Welcome to the character creator, you're in the name phase.");
 			messageClient(%client, '', "\c6You need to define your name, race, and class.");
-			messageClient(%client, '', "\c6Say \c3nameHere raceHere classHere");
-			messageClient(%client, '', "\c6Names can be either one or two words long.");
-			messageClient(%client, '', "\c6Available choices for race and class can be viewed with \c3!viewChoices\c6.");
-		
+			messageClient(%client, '', "\c6Say \c3nameHere");
+			messageClient(%client, '', "\c6For example, just say in team chat: \c3Edward \"Dick\" Cullen");
+			messageClient(%client, '', "\c6Names can be up to 30 characters long. Abuse of this will obviously warrant a ban.");
+			%client.Microlite["charphase"] = "name";
+		case "name":
+			if(strLen(%data) > 30) {
+				messageClient(%client, '', "\c6Your name is \c3" @ (strLen(%data) - 30) @ "\c6 characters too long.");
+				return;
+			}
+			else {
+				%client.Microlite["name"] = %data;
+				%client.Microlite["charphase"] = "stats";
+				messageClient(%client, '', "\c6Next we'll be defining your stats.");
+				messageClient(%client, '', "\c6I'll roll 4d6 and drop the lowest and then show you the number.");
+				messageClient(%client, '', "\c6You tell me (via teamchat) which stat you want it to apply to: STR, DEX, or MIND");
+				%client.Microlite["todoStats"] = "str dex mind";
+			}
+		case "stats": //str, dex, mind
+			if(%client.Microlite["temp4d6"] $= "") {
+				%client.Microlite["temp4d6"] = Microlite.charGen4d6Drop();
+			}
+			messageClient(%client, '', "\c6Your current number is \c3" @ %client.Microlite["temp4d6"] @ "\c6.");
+			if(getWordCount(%client.Microlite["todoStats"]) > 1) {
+				switch$(%data) {
+					case "str":
+						if(%client.Microlite["str"] !$= "") {
+							messageClient(%client, '', "\c6You already chose a roll to go in that skill. Pick another one.");
+						}
+						else
+							%client.Microlite["str"] = %client.Microlite["temp4d6"];
+							%client.Microlite["strmod"] = ((%client.Microlite["str"] - 10) / 2);
+							%client.Microlite["temp4d6"] = "";
+					case "dex":
+						if(%client.Microlite["dex"] !$= "") {
+							messageClient(%client, '', "\c6You already chose a roll to go in that skill. Pick another one.");
+						}
+						else
+							%client.Microlite["dex"] = %client.Microlite["temp4d6"];
+							%client.Microlite["dexmod"] = ((%client.Microlite["dex"] - 10) / 2);
+							%client.Microlite["temp4d6"] = "";
+					case "mind":
+						if(%client.Microlite["mind"] !$= "") {
+							messageClient(%client, '', "\c6You already chose a roll to go in that skill. Pick another one.");
+						}
+						else
+							%client.Microlite["mind"] = %client.Microlite["temp4d6"];
+							%client.Microlite["mindmod"] = ((%client.Microlite["mind"] - 10) / 2);
+							%client.Microlite["temp4d6"] = "";
+				}
+			}
+			else {
+				%stat = trim(%client.Microlite["todoStats"]);
+				%client.Microlite[%stat] = Microlite.charGen4d6Drop();
+				%client.Microlite[%stat @ "mod"] = ((%client.Microlite[%stat] - 10) / 2);
+			}
+
 	}
+
 }
 
 function Microlite::showStats(%this, %client, %blid) {
