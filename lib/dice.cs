@@ -1,7 +1,7 @@
 // Script_Dice from M, BL_ID 4332, used and modified without permission.
 // http://forum.blockland.us/index.php?topic=189605.0
 
-$Dice::MaxCount = 30;
+$Dice::MaxCount = 10;
 $Dice::MinSides = 3;
 $Dice::MaxSides = 20; // You'll never go above a 20 in Microlite.
 $Dice::MaxShownCount = 7;
@@ -216,6 +216,19 @@ function Microlite::DMRoll(%this, %client, %str) //proll was a good name - priva
 	} else {
 		messageClient(%client,'',%msg);
 	}
+}
+
+function Microlite::charGen4d6Drop() {
+	%temp = 7;
+	%out = 0;
+	for(%i = 0; %i < 4; %i++) {
+		%result = getRandom(1,6);
+		if(%temp > %result)
+			%temp == %result;
+		%out += %result;
+	}
+	%out -= %temp;
+	return %out;
 }
 
 // if(isFile("Add-Ons/Event_Variables.zip") && $AddOn__Event_Variables == 1) // unneccesary, but VCE might (read: probably won't) be implemented at a later date

@@ -1,6 +1,5 @@
 function Microlite::createCharacter(%this, %client, %data) {// semi-recursive function for "step by step" character creation
-	%cmd = firstWord(%data);
-	%parse = restWords(%data);
+	%override = (%data $= "override");
 
 	if(%client.Microlite["hasChar"] && !%override)
 	{
@@ -9,20 +8,98 @@ function Microlite::createCharacter(%this, %client, %data) {// semi-recursive fu
 		return;
 	}
 
-	Microlite.createCharacterBackend(%client);
-}
+	%client.Microlite["charphase"] = 0;
 
-function Microlite::createCharacterBackend(%this, %client, %data) {
-	switch(%phase)
+	switch(%client.Microlite["charphase"])
 	{
-		case 0: // info and name, race, class
+		case 0: // intro
+			%client.Microlite["charphase"] = 1;
 			%client.Microlite["hasChar"] = false;
-		case 1: // str, dex, mind rolls - "choose an order from highest to lowest for these three stats"
-		case 2: // hp
-		case 3: // armor - list of purchaseable armor and benefit it provides, pick one 
-		case 4: // fastpack
-		case 5: // weapons
-		case 6: // misc. inventory
+			messageClient(%client, '', "\c6Welcome to the character creator, you're in phase 1.");
+			messageClient(%client, '', "\c6You need to define your name, race, and class.");
+			messageClient(%client, '', "\c6Say !newChar \c3nameHere raceHere classHere");
+			messageClient(%client, '', "\c6Names can be either one or two words long.");
+			messageClient(%client, '', "\c6Available choices for race and class can be viewed with \c3!viewChoices\c6.");
+		case 1: // info and name, race, class
+			%count = getWordCount(%data);
+			if(%count == 3 || %count == 4) {
+				%client.Microlite["charphase"] = 2;
+				switch(%count) {
+					case 3:
+						%client.Microlite["name"] = getWord(%data, 0);
+						%client.Microlite["race"] = getWord(%data, 1);
+						%client.Microlite["class"] = getWord(%data, 2);
+					case 4:
+						%client.Microlite["name"] = getWords(%data, 0, 1);
+						%client.Microlite["race"] = getWord(%data, 2);
+						%client.Microlite["class"] = getWord(%data, 3);
+				}
+				messageClient(%client, '', "\c6Alright, now we're going to figure out your stats.");
+				messageClient(%client, '', "\c6To do so, I'll roll 4d6 and drop the lowest. You need to tell me where you want that number applied: STR, DEX, or MIND.");
+				messageClient(%client, '', "\c6Say \c3!newChar statHere");
+				messageClient(%client, '', "\c6Where statHere is either STR, DEX, or MIND. Caps not neccesary.");
+				%client.Microlite["tempphase"] = 0;
+				serverCmdMessageSent(%client, "!newChar next");
+			}
+			else {
+				messageClient(%client, '', "\c6You did something wrong. Did you have the right number of arguments? Try again: ");
+				messageClient(%client, '', "\c6Say !newChar \c3nameHere raceHere classHere");
+				messageClient(%client, '', "\c6Names can be either one or two words long.");
+				messageClient(%client, '', "\c6Available choices for this phase can be viewed with \c3!viewChoices\c6.");
+			}
+		case 2: // str, dex, mind rolls - "choose an order from highest to lowest for these three stats"
+			%client.Microlite["temp4d6"] = Microlite.charGen4d6Drop();
+			%client.Microlite["tempphase"] = "str dex mind";
+			messageClient(%client, '', "\c6Where do you want the following number assigned?\c3" SPC (hasItemOnList(%client.Microlite["tempphase"], "str") ? "STR" : "") SPC (hasItemOnList(%client.Microlite["tempphase"], "dex") ? "DEX" : "") SPC (hasItemOnList(%client.Microlite["tempphase"], "mind") ? "MIND" : ""));
+			switch$(firstWord(%data)) {
+				case "STR":
+					if(%client.Microlite["str"] $= "") {
+						%client.Microlite["str"] = %client.Microlite["tempd4d6"];
+					}
+					else {
+						messageClient(%client, '', "\c6Sorry, that stat already has a number in it. Put it in a different one.");
+						return;
+					}
+				case "DEX":
+					if(%client.Microlite["dex"] $= "") {
+						%client.Microlite["dex"] = %client.Microlite["tempd4d6"];
+					}
+					else {
+						messageClient(%client, '', "\c6Sorry, that stat already has a number in it. Put it in a different one.");
+						return;
+					}
+				case "MIND":
+					if(%client.Microlite["mind"] $= "") {
+						%client.Microlite["mind"] = %client.Microlite["tempd4d6"];
+					}
+					else {
+						messageClient(%client, '', "\c6Sorry, that stat already has a number in it. Put it in a different one.");
+						return;
+					}
+			}
+			if(%client.Microlite["str"] && %client.Microlite["dex"] && %client.Microlite["mind"]) {
+				%client.Microlite["charphase"] = 3;
+
+				serverCmdMessageSent("!newChar");
+			}
+		case 3: // hp
+			%client.Microlite["charphase"] = 4;
+			messageClient(%client, '', "\c6Your HP is " @ (%client.Microlite["hp"] = %client.Microlite["str"] + getRandom(1,6)));
+		case 4: // armor - list of purchaseable armor and benefit it provides, pick one 
+			messageClient(%client, '', "\c6Next up is weaponry. I'll show you a list of the weapons available to you.");
+			messageClient(%client, '', "\c6The data is as follows: Weapon name, Cost, Damage, and Range.");
+			CenterprintTextScroller.beginPrint(%client, )
+
+			%client.Microlite["charphase"] = 5;
+		case 5: // fastpack
+			messageClient(%client, '', "\c6You can pick from one of 3 fast packs. They all cost 45 GP, but they're an easy bundle."); //Creative fucking license, not RAW, deal with it.
+			%client.Microlite["charphase"] = 6;
+		case 6: // weapons
+			%client.Microlite["charphase"] = 7;
+		case 7: // misc. inventory
+			%client.Microlite["charphase"] = 8;
+		case 8: // fin
+			%client.Microlite["hasChar"] = true;
 		
 	}
 }
