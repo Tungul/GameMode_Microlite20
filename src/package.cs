@@ -21,9 +21,10 @@ package Microlite20 {
 				case "check": // make a str+dex check to dodge the falling rock!
 					Microlite.rollCheck(%client, %parse);
 
-				// case "inventory":
-				// 	Microlite.inventory(%client, %parse); // inventory actions
-				// 	return;
+				case "inventory": //doesn't work yet
+					messageClient(%client, '', "\c6Displaying inventory.");
+					CenterprintTextScroller.beginPrint(%client, strReplace(%client.Microlite["inv"], " ", "\n"), 6);
+					return;
 
 				case "stats":
 					Microlite.showStats(%client, %data);
@@ -37,8 +38,9 @@ package Microlite20 {
 					// todo more stuff
 			}
 		}
-		// don't forget in character chat!
-		return parent::serverCmdMessageSent(%client, %msg);
+		else if(%messageInCharacter) {}// placeholder
+		else
+			return parent::serverCmdMessageSent(%client, %msg);
 	}
 };
 activatePackage("Microlite20");
