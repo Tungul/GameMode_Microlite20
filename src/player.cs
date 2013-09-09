@@ -39,6 +39,7 @@ function Microlite::createCharacter(%this, %client, %data) {// semi-recursive fu
 				messageClient(%client, '', "\c6Say \c3!newChar statHere");
 				messageClient(%client, '', "\c6Where statHere is either STR, DEX, or MIND. Caps not neccesary.");
 				%client.Microlite["tempphase"] = 0;
+				%client.Microlite["level"] = 1;
 				serverCmdMessageSent(%client, "!newChar next");
 			}
 			else {
@@ -107,6 +108,7 @@ function Microlite::createCharacter(%this, %client, %data) {// semi-recursive fu
 function Microlite::showStats(%this, %client, %blid) {
 	%target = findClientByBL_ID(%blid);
 	if(!isObject(%target)) {
+		messageClient(%client, '', "\c6I can't find the target:\c5" SPC %blid)
 		return;
 	}
 
